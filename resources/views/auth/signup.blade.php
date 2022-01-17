@@ -12,11 +12,7 @@
                 <div class="signup-card card-block auth-body mr-auto ml-auto">
                     <form class="md-float-material">
                         <div class="text-center logo">
-                            @if(App::getLocale()=='ar')
-                                {{__("academy")}} <span style="color:#3329cc">{{__('rancho')}}</span>
-                            @else
-                                {{__('rancho')}} <span style="color:#3329cc">{{__("academy")}}</span>
-                            @endif
+                        {{__('rancho')}} <span style="color:#3329cc"> {{__("academy")}}</span>
                         </div>
                         <div class="auth-box">
                             <div class="row m-b-20">

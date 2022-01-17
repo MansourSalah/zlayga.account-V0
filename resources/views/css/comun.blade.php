@@ -4,7 +4,8 @@
         font-weight: 700;
         font-size: xx-large;
         line-height: 1rem;
-        text-decoration: none;     
+        text-decoration: none;  
+        font-family: emoji;   
     }
     .jconfirm-title-c,.jconfirm-content-pane{
         text-align:center;

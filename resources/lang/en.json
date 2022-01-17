@@ -1,8 +1,8 @@
 {
-    "societe":"Rancho Academy",
-    "rancho":"Rancho",
-    "academy":"Academy",
-    "signupTitre":"Create your Rancho Account",
+    "societe":"zlayga.com",
+    "rancho":"zlayga",
+    "academy":".com",
+    "signupTitre":"Create your Account",
     "signup":"Sign up",
     "username":"Choose Username",
     "email":"Your Email Address",
@@ -36,12 +36,5 @@
     "ForgotYourPassword":"Forgot your password",
     "recoverYourPassword":"Recover your password",
     "enterYourEmailAddress":"Enter your email address",
-    "signOut":"sign out...",
-    "termsTitle":"Terms of use",
-    "termsP1":"In order to protect the privacy of its users (customers, suppliers, partners), Rancho Academy wishes to inform about its personal data protection policy.",
-    "termsP2":"The purpose of this Charter is to recall our principles and our actions aimed at complying with the applicable regulations on the protection of personal data.",
-    "termsLi1":"If you are over the age of 10, you can create and use your own Rancho account. Some services only work if you have a Rancho account.",
-    "termsLi2":"When you create a Rancho account, you provide us with personal information, including your name and password. You also have the option to add a phone number or payment information to your account.",
-    "termsLi3":"You are responsible for the use you make of your Rancho Account, and it is your responsibility to take the necessary steps to protect it, to the extent that is reasonable.",
-    "termsLi4":"We collect information about the apps, browsers, and devices you use to access Rancho services."
+    "signOut":"sign out..."
 }

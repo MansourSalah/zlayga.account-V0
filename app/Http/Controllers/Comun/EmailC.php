@@ -10,8 +10,8 @@ use Session;
 class EmailC
 {
     //Setting
-    private static $from_email='account@rancho.ma';
-    private static $from_name='Rancho Academy';
+    private static $from_email= 'donotreply@zlayga.com';
+    private static $from_name='zlayga.com';
     
     //Function
     public static function send($view,$to,$data,$subject=null) {//tout d'abort veuillez configurer la sécurité de votre compte Gmail
