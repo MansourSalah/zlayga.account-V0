@@ -79,7 +79,7 @@ class ExtController extends Controller
                 if($rq->active!=0 && $rq->active!=1)
                     return ['flag'=>false];
                 if(Auth::isConnected($rq->uid,$rq->session_token)['flag']){
-                    $x_token=hash("sha256",$rq->active.$rq->uid.$rq->session_token.env('APP_KEY').'admin.rancho.ma',false);
+                    $x_token=hash("sha256",$rq->active.$rq->uid.$rq->session_token.env('APP_KEY').'admin.zlayga.com',false);
                     if($x_token==$rq->x_token){
                         $user=User::find($rq->uid);
                         $user->active=$rq->active;
@@ -102,7 +102,7 @@ class ExtController extends Controller
             //x_token = hash(name.$session_token.env('APP_KEY').'myaccount.rancho.ma')
             if($rq->has('name') && $rq->has('session_token') && $rq->has('uid') && $rq->has('x_token')){
                 if(Auth::isConnected($rq->uid,$rq->session_token)['flag']){
-                    $x_token=hash("sha256",$rq->name.$rq->uid.$rq->session_token.env('APP_KEY').'myaccount.rancho.ma',false);
+                    $x_token=hash("sha256",$rq->name.$rq->uid.$rq->session_token.env('APP_KEY').'myaccount.zlayga.com',false);
                     if($x_token==$rq->x_token){
                         $user=User::find($rq->uid);
                         $user->name=$rq->name;
@@ -123,12 +123,17 @@ class ExtController extends Controller
         try{
             if($rq->has('password1') && $rq->has('password2') && $rq->has('session_token') && $rq->has('uid') && $rq->has('x_token')){
                 if(Auth::isConnected($rq->uid,$rq->session_token)['flag']){
-                    $x_token=hash("sha256",$rq->password1.$rq->password2.$rq->uid.$rq->session_token.env('APP_KEY').'myaccount.rancho.ma',false);
+                    $odlPassword= $rq->password1;
+                    $newPassword= $rq->password2;
+                    $x_token=hash("sha256",$odlPassword.$newPassword.$rq->uid.$rq->session_token.env('APP_KEY').'myaccount.zlayga.com',false);
                     if($x_token==$rq->x_token){
                         $user=User::find($rq->uid);
-                        $user->password=$rq->password;
-                        $user->save();
-                        return ['flag'=>true];
+                        if($user->password==$odlPassword){
+                             $user->password=$newPassword;
+                            $user->save();
+                            return ['flag'=>true];
+                        }else
+                            return ['flag'=>false];
                     }else
                         return ['flag'=>false];
                 }else
