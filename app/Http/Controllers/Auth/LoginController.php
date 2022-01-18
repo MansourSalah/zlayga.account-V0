@@ -87,7 +87,7 @@ class LoginController extends Controller
                 $session= new UserSess(); $session->user_id=$user->id; $session->session_id=Session::getId(); $session->save();
             }
             //get url redirection
-            $continue="https://myaccount.rancho.ma?code1=".$session_token."&uid=".$user->id."&code2=".$access_token;
+            $continue=env('DEFAULT_URL')."?code1=".$session_token."&uid=".$user->id."&code2=".$access_token;
             if($rq->continue!="")
                 $continue=$rq->continue."?code1=".$session_token."&uid=".$user->id."&code2=".$access_token;
             Session::put("auth_user",['user_id'=>$user->id,'session_token'=>$session_token]);

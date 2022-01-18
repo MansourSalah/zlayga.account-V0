@@ -15,9 +15,12 @@ class LogoutController extends Controller
     public function logout(Request $rq){//cette fonction utilisé par le requests externe
         try{
             if($rq->has("uid") && $rq->has('session_token') && $rq->has("x_token")){
+               
                 if(Auth::isConnected($rq->uid,$rq->session_token)){
                     $x_token=hash("sha256",$rq->uid.$rq->session_token.env('APP_KEY'),false);
+                    
                     if($x_token==$rq->x_token){
+                        $token= Token::where('user_id',$rq->uid)->where('session_token',$rq->session_token);
                         $token=$token->first();
                         $token->isConnected=0;
                         $token->save();

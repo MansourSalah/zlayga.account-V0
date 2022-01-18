@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Comun\FaultC;
@@ -123,13 +125,15 @@ class ExtController extends Controller
         try{
             if($rq->has('password1') && $rq->has('password2') && $rq->has('session_token') && $rq->has('uid') && $rq->has('x_token')){
                 if(Auth::isConnected($rq->uid,$rq->session_token)['flag']){
-                    $odlPassword= $rq->password1;
+                    $oldPassword=$rq->password1;
                     $newPassword= $rq->password2;
-                    $x_token=hash("sha256",$odlPassword.$newPassword.$rq->uid.$rq->session_token.env('APP_KEY').'myaccount.zlayga.com',false);
+                    $x_token=hash("sha256",$oldPassword.$newPassword.$rq->uid.$rq->session_token.env('APP_KEY').'myaccount.zlayga.com',false);
+                    
                     if($x_token==$rq->x_token){
                         $user=User::find($rq->uid);
-                        if($user->password==$odlPassword){
-                             $user->password=$newPassword;
+                        $oldPassword=Crypt::decryptString($oldPassword);
+                        if(password_verify($oldPassword,$user->password)){
+                            $user->password=$newPassword;//deja haché
                             $user->save();
                             return ['flag'=>true];
                         }else

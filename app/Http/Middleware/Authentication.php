@@ -37,7 +37,7 @@ class Authentication
                         $service=$rq->service;
                         
                     //get url redirection
-                    $continue="https://myaccount.rancho.ma?code1=".$user['session_token']."&uid=".$user['user_id']."&code2=".$access_token;
+                    $continue=env('DEFAULT_URL')."?code1=".$user['session_token']."&uid=".$user['user_id']."&code2=".$access_token;
                     if($rq->continue!="")
                         $continue=$rq->continue."?code1=".$user['session_token']."&uid=".$user['user_id']."&code2=".$access_token;
                     return redirect($continue);
